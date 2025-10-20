@@ -1,0 +1,53 @@
+/* Làm cho thẻ xe đạp có thể được click và có hiệu ứng đẹp mắt */
+.bike-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #ddd;
+}
+
+.bike-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+/* Định dạng cho ảnh xe trong thẻ */
+.bike-card-img {
+    height: 150px;
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+}
+
+/* Định dạng cho xe không có sẵn hoặc đã được chọn */
+.bike-card.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none; /* Vô hiệu hóa mọi tương tác chuột */
+}
+
+/* Thêm một lớp phủ màu xanh khi xe được chọn */
+.bike-card.disabled .card-body {
+    position: relative;
+}
+
+.bike-card.disabled .card-body::after {
+    content: 'Đã chọn';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(105, 108, 255, 0.7); /* Màu primary của template */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 0 0 0.375rem 0.375rem;
+}
+
+/* Định dạng cho nút xóa trong giỏ hàng */
+.btn-remove-cart {
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+}

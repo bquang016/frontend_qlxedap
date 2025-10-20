@@ -1,0 +1,11 @@
+/* Giải thích:
+  File CSS này dùng để chứa các style tùy chỉnh nhỏ mà không có sẵn trong template,
+  giúp code gọn gàng, không cần viết style trực tiếp trong thẻ HTML.
+*/
+
+/* Định dạng cho ảnh đại diện của xe trong bảng nhỏ và tròn */
+.bike-avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover; /* Đảm bảo ảnh không bị méo khi co dãn */
+}

@@ -1,0 +1,63 @@
+/* CSS dùng chung cho toàn bộ dự án */
+body {
+    background-color: #f7f7f9;
+    font-family: 'Public Sans', sans-serif;
+}
+
+.layout-wrapper {
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    background-color: #fff;
+    min-height: 100vh;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+.sidebar-header {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 15px 0;
+}
+
+.sidebar-nav li a {
+    display: block;
+    padding: 12px 25px;
+    color: #566a7f;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.sidebar-nav li.active a, .sidebar-nav li a:hover {
+    background-color: rgba(105, 108, 255, 0.1);
+    color: #696cff;
+}
+
+/* Main Wrapper */
+.main-wrapper {
+    flex-grow: 1;
+}
+
+/* Header */
+.header {
+    background-color: #fff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.content {
+    padding: 0 30px 30px;
+}

@@ -1,0 +1,25 @@
+/*
+  Giải thích:
+  - Class này giúp tạo ra một layout nhỏ bên trong ô "Khách hàng" của bảng.
+  - Nó sử dụng flexbox để đặt avatar và thông tin (tên, sđt) nằm cạnh nhau.
+*/
+.customer-info-cell {
+    display: flex;
+    align-items: center;
+}
+
+/* Giải thích:
+  - Định dạng cho phần text (tên, sđt) bên cạnh avatar.
+*/
+.customer-details {
+    margin-left: 12px;
+}
+
+.customer-name {
+    font-weight: 600; /* Làm đậm tên khách hàng */
+}
+
+.customer-phone {
+    font-size: 0.875rem; /* Kích thước chữ nhỏ hơn cho sđt */
+    color: #6c757d; /* Màu chữ xám */
+}

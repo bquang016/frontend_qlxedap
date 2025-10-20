@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi" class="light-style layout-menu-fixed">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Quản lý Thuê xe</title>
+
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/css/theme-default.css" />
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/css/demo.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" />
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/libs/apex-charts/apex-charts.css" />
+</head>
+<body>
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <div class="app-brand demo"><a href="dashboard.html" class="app-brand-link"><span class="app-brand-text demo menu-text fw-bolder">Quản lý Xe</span></a></div>
+                <ul class="menu-inner py-1">
+                    <li class="menu-item active"><a href="dashboard.html" class="menu-link"><i class="menu-icon tf-icons bx bx-home-circle"></i><div>Dashboard</div></a></li>
+                    <li class="menu-item"><a href="../bicycle/bicycle.html" class="menu-link"><i class="menu-icon tf-icons bx bxs-bicycle"></i><div>Quản lý Xe đạp</div></a></li>
+                    <li class="menu-item"><a href="../customer/customer.html" class="menu-link"><i class="menu-icon tf-icons bx bx-user"></i><div>Quản lý Khách hàng</div></a></li>
+                    <li class="menu-item"><a href="../rental/rental.html" class="menu-link"><i class="menu-icon tf-icons bx bx-receipt"></i><div>Quản lý Đơn thuê</div></a></li>
+                </ul>
+            </aside>
+
+            <div class="layout-page">
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar"></nav>
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="card-title d-flex flex-column align-items-start">
+                                                <span class="fw-semibold d-block mb-1">Tổng Doanh Thu</span>
+                                                <h3 class="card-title mb-2">15.680.000₫</h3>
+                                                <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +12.5%</small>
+                                            </div>
+                                            <div class="avatar"><span class="avatar-initial rounded bg-label-primary"><i class="bx bx-dollar-circle fs-3"></i></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 mb-4">
+                                <div class="card">
+                                     <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="card-title d-flex flex-column align-items-start">
+                                                <span class="fw-semibold d-block mb-1">Đơn Thuê Mới</span>
+                                                <h3 class="card-title mb-2">82</h3>
+                                                <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +5.2%</small>
+                                            </div>
+                                            <div class="avatar"><span class="avatar-initial rounded bg-label-info"><i class="bx bx-receipt fs-3"></i></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 mb-4">...</div>
+                            <div class="col-lg-3 col-md-6 mb-4">...</div>
+
+                            <div class="col-12 mb-4">
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title mb-0">Doanh thu theo tháng</h5>
+                                        <div class="dropdown"><button class="btn p-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bx bx-dots-vertical-rounded"></i></button><div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Xem chi tiết</a></div></div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="revenueChart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="card">
+                                    <h5 class="card-header">Đơn thuê gần đây</h5>
+                                    <div class="table-responsive text-nowrap">
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/libs/popper/popper.js"></script>
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/js/bootstrap.js"></script>
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/js/main.js"></script>
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+    <script src="js/dashboard.js"></script>
+    </body>
+</html>

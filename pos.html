@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi" class="light-style layout-menu-fixed">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POS - Cho thuê xe</title>
+
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/css/theme-default.css" />
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/css/demo.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" />
+
+    <link rel="stylesheet" href="pos.css">
+</head>
+<body>
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <div class="app-brand demo">
+                    <a href="../dashboard/dashboard.html" class="app-brand-link">
+                        <span class="app-brand-text demo menu-text fw-bolder">Quản lý Xe</span>
+                    </a>
+                </div>
+                <ul class="menu-inner py-1">
+                    <li class="menu-item">
+                        <a href="../dashboard/dashboard.html" class="menu-link"><i class="menu-icon tf-icons bx bx-home-circle"></i><div>Dashboard</div></a>
+                    </li>
+                     <li class="menu-item active">
+                        <a href="pos.html" class="menu-link"><i class="menu-icon tf-icons bx bx-cart-alt"></i><div>Bán hàng (POS)</div></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="../bicycle/bicycle.html" class="menu-link"><i class="menu-icon tf-icons bx bxs-bicycle"></i><div>Quản lý Xe đạp</div></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="../customer/customer.html" class="menu-link"><i class="menu-icon tf-icons bx bx-user"></i><div>Quản lý Khách hàng</div></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="../rental/rental.html" class="menu-link"><i class="menu-icon tf-icons bx bx-receipt"></i><div>Quản lý Đơn thuê</div></a>
+                    </li>
+                </ul>
+            </aside>
+
+            <div class="layout-page">
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar"></nav>
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <div class="row g-4">
+
+                            <div class="col-lg-7">
+                                <div class="card h-100">
+                                    <div class="card-header">
+                                        <input type="text" id="bike-search" class="form-control" placeholder="Tìm kiếm xe theo tên hoặc loại xe...">
+                                    </div>
+                                    <div class="card-body overflow-y-auto" style="max-height: 75vh;" id="bike-list-container">
+                                        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-5">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <label class="form-label fw-semibold">Khách hàng</label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Tìm SĐT hoặc Tên...">
+                                                <button class="btn btn-outline-primary" type="button" title="Tìm khách hàng"><i class='bx bx-search'></i></button>
+                                                <button class="btn btn-primary" type="button" title="Thêm khách hàng mới"><i class='bx bx-user-plus'></i></button>
+                                            </div>
+                                        </div>
+                                        
+                                        <h6 class="text-muted border-top pt-3">CHI TIẾT ĐƠN THUÊ</h6>
+                                        <ul class="list-group" id="cart-items">
+                                            <li class="list-group-item text-center text-muted">Chưa có xe nào được chọn</li>
+                                        </ul>
+
+                                        <div class="border-top mt-3 pt-3">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>Tạm tính</span>
+                                                <span id="subtotal">0 VND</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>Giảm giá</span>
+                                                <span id="discount" class="text-danger">- 0 VND</span>
+                                            </div>
+                                            <hr class="my-2">
+                                            <div class="d-flex justify-content-between fw-bold fs-5 mb-3">
+                                                <span>TỔNG CỘNG</span>
+                                                <span id="total">0 VND</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-grid gap-2">
+                                            <button class="btn btn-primary btn-lg" type="button" id="checkout-btn">
+                                                <i class='bx bxs-dollar-circle fs-4 me-2'></i> TẠO ĐƠN THUÊ
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/libs/popper/popper.js"></script>
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/js/bootstrap.js"></script>
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/js/main.js"></script>
+    
+    <script src="js/pos.js"></script>
+</body>
+</html>
