@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quản lý Xe đạp</title>
+    <title>Quản lý Xe đạp - Grid View</title>
 
     <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/css/core.css" />
     <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/css/theme-default.css" />
@@ -11,77 +11,134 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" />
 
     <link rel="stylesheet" href="css/bicycle.css">
-    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header"><i class='bx bx-bell me-2'></i><strong class="me-auto">Thông báo</strong><small>Vừa xong</small><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button></div>
+            <div class="toast-body"></div>
+        </div>
+    </div>
+
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
-                    <a href="#" class="app-brand-link"><span class="app-brand-text demo menu-text fw-bolder">Quản lý xe</span></a>      
+                    <a href="dashboard.html" class="app-brand-link">
+                        <img src="img/logoxee.png" alt="Trang chủ" style="max-height: 190px;" />
+                    </a>
                 </div>
                 <ul class="menu-inner py-1">
-                    <li class="menu-item"><a href="#" class="menu-link"><i class="menu-icon tf-icons bx bx-home-circle"></i><div>Dashboard</div></a></li>
-                    <li class="menu-item active"><a href="bicycle.html" class="menu-link"><i class="menu-icon tf-icons bx bxs-bicycle"></i><div>Quản lý Xe đạp</div></a></li>
+                    <li class="menu-item"><a href="dashboard.html" class="menu-link"><i class="menu-icon tf-icons bx bx-home-circle"></i><div>Dashboard</div></a></li>
+                    <li class="menu-item"><a href="pos.html" class="menu-link"><i class="menu-icon tf-icons bx bx-cart-alt"></i><div>Bán hàng (POS)</div></a></li>
+                    <li class="menu-item active">
+                        <a href="bicycle.html" class="menu-link"><i class="menu-icon tf-icons bx bx-list-ul"></i><div>Quản lý Xe đạp</div></a>
+                    </li>
+                    <li class="menu-item"><a href="customer.html" class="menu-link"><i class="menu-icon tf-icons bx bx-user"></i><div>Quản lý Khách hàng</div></a></li>
+                    <li class="menu-item"><a href="promotion.html" class="menu-link"><i class="menu-icon tf-icons bx bxs-purchase-tag-alt"></i><div>Quản lý Khuyến mãi</div></a></li>
                 </ul>
             </aside>
 
             <div class="layout-page">
                 <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
-                    <div class="navbar-nav-right d-flex align-items-center">
+                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none"><a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)"><i class="bx bx-menu bx-sm"></i></a></div>
+                    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                        <div class="navbar-nav align-items-center"><div class="nav-item d-flex align-items-center"><i class="bx bx-search fs-4 lh-0"></i><input type="text" class="form-control border-0 shadow-none" placeholder="Tìm kiếm..." aria-label="Tìm kiếm..."></div></div>
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
-                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle hide-arrow" href="#" data-bs-toggle="dropdown"><div class="avatar avatar-online"><img src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" /></div></a><ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item" href="#">Đăng xuất</a></li></ul></li>
+                             <li class="nav-item me-2"><a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);"><i class='bx bx-sm'></i></a></li>
+                             <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-2">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bx bx-bell bx-sm"></i><span class="badge bg-danger rounded-pill badge-notifications">3</span></a>
+                                <ul class="dropdown-menu dropdown-menu-end py-0"> </ul>
+                             </li>
+                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"><div class="avatar avatar-online"><img src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"></div></a>
+                                <ul class="dropdown-menu dropdown-menu-end"> </ul>
+                             </li>
                         </ul>
                     </div>
                 </nav>
-
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Chức năng /</span> Quản lý Xe đạp</h4>
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Quản lý /</span> Xe đạp</h4>
 
-                        <div class="card">
-                            <h5 class="card-header d-flex justify-content-between align-items-center">
-                                Danh sách Xe đạp
-                                <button type="button" class="btn btn-primary">
-                                    <i class='bx bx-plus'></i> &nbsp; Thêm xe mới
-                                </button>
-                            </h5>
-                            <div class="table-responsive text-nowrap">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Ảnh</th>
-                                            <th>Tên xe</th>
-                                            <th>Loại xe</th>
-                                            <th>Giá thuê/giờ</th>
-                                            <th>Trạng thái</th>
-                                            <th>Hành động</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="bike-table-body" class="table-border-bottom-0">
-                                        </tbody>
-                                </table>
+                        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+                            <h5 class="mb-0">Danh sách Xe đạp</h5>
+                            <div class="d-flex flex-wrap gap-3 align-items-center">
+                                <div class="w-auto">
+                                    <label for="filter-bike-status" class="visually-hidden">Lọc theo trạng thái</label>
+                                    <select id="filter-bike-status" class="form-select form-select-sm">
+                                        <option value="">Tất cả trạng thái</option>
+                                        <option value="available">Đang có sẵn</option>
+                                        <option value="rented">Đang cho thuê</option>
+                                        <option value="maintenance">Bảo trì</option>
+                                        <option value="unavailable">Không có sẵn</option>
+                                    </select>
+                                </div>
+                                <div class="input-group input-group-sm w-auto">
+                                    <span class="input-group-text"><i class='bx bx-search'></i></span>
+                                    <input type="text" id="search-bicycle" class="form-control" placeholder="Tìm theo Tên/Loại xe..." aria-label="Tìm kiếm xe">
+                                </div>
+                                <button type="button" class="btn btn-primary btn-sm" id="add-bike-btn"><i class='bx bx-plus'></i> &nbsp; Thêm xe mới</button>
                             </div>
                         </div>
 
-                        <nav aria-label="Page navigation" class="mt-4">
-                            <ul id="pagination" class="pagination justify-content-center">
-                                </ul>
-                        </nav>
+                        <div id="bicycle-grid-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+                            <div class="col-12 text-center p-5">
+                                <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Đang tải...</span></div>
+                                <p class="mt-2">Đang tải danh sách xe...</p>
+                            </div>
+                        </div>
+                        <nav class="mt-4"><ul id="pagination" class="pagination justify-content-center"></ul></nav>
                     </div>
-                </div>
+
+                    <footer class="content-footer footer bg-footer-theme">
+                         <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column"><div class="mb-2 mb-md-0">© <script>document.write(new Date().getFullYear());</script>, làm với ❤️ bởi <a href="#" target="_blank" class="footer-link fw-bolder">Bạn</a></div><div><a href="#" class="footer-link me-4" target="_blank">Tài liệu</a><a href="#" target="_blank" class="footer-link me-4">Hỗ trợ</a></div></div>
+                    </footer>
+                    <div class="content-backdrop fade"></div>
+                </div> </div> </div> </div> <div class="modal fade" id="bicycleModal" tabindex="-1" aria-labelledby="bicycleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title" id="bicycleModalLabel">Thêm Xe đạp</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <form id="bicycle-form">
+                    <div class="modal-body">
+                        <input type="hidden" id="bicycle-id">
+                        <div class="mb-3"><label for="bike-name" class="form-label">Tên xe</label><input type="text" class="form-control" id="bike-name" required></div>
+                        <div class="row">
+                             <div class="col-md-6 mb-3"><label for="bike-type" class="form-label">Loại xe</label><input type="text" class="form-control" id="bike-type" placeholder="VD: Xe địa hình" required></div>
+                             <div class="col-md-6 mb-3"><label for="bike-price" class="form-label">Giá thuê/giờ (VND)</label><input type="number" class="form-control" id="bike-price" required min="0"></div>
+                        </div>
+                        <div class="mb-3"><label for="bike-image" class="form-label">URL Hình ảnh</label><input type="url" class="form-control" id="bike-image" placeholder="https://example.com/image.jpg"></div>
+                        <div class="mb-3"><label for="bike-status-modal" class="form-label">Trạng thái</label>
+                            <select id="bike-status-modal" class="form-select">
+                                <option value="available">Đang có sẵn</option>
+                                <option value="rented">Đang cho thuê</option>
+                                <option value="maintenance">Bảo trì</option>
+                                <option value="unavailable">Không có sẵn</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button><button type="submit" class="btn btn-primary">Lưu</button></div>
+                </form>
             </div>
         </div>
     </div>
 
+    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title" id="deleteConfirmModalLabel">Xác nhận Xóa</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <div class="modal-body">Bạn có chắc chắn muốn xóa xe <strong id="promo-name-to-delete"></strong> không? Hành động này không thể hoàn tác.<input type="hidden" id="promo-id-to-delete"></div>
+                <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button><button type="button" class="btn btn-danger" id="confirm-delete-btn">Xóa</button></div>
+            </div>
+        </div>
+    </div>
+
+
     <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/libs/jquery/jquery.js"></script>
     <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/libs/popper/popper.js"></script>
     <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/js/bootstrap.js"></script>
-    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/js/helpers.js"></script>
-    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/js/config.js"></script>
     <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/js/main.js"></script>
 
     <script src="js/bicycle.js"></script>
-    </body>
+</body>
 </html>

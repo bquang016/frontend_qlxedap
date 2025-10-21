@@ -1,11 +1,63 @@
-/* Giải thích:
-  File CSS này dùng để chứa các style tùy chỉnh nhỏ mà không có sẵn trong template,
-  giúp code gọn gàng, không cần viết style trực tiếp trong thẻ HTML.
-*/
+/* Style cho card xe đạp */
+.bicycle-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid #ddd;
+    position: relative; /* Cho phép định vị badge */
+    overflow: hidden; /* Giấu phần thừa của badge */
+}
 
-/* Định dạng cho ảnh đại diện của xe trong bảng nhỏ và tròn */
-.bike-avatar {
-    width: 40px;
-    height: 40px;
-    object-fit: cover; /* Đảm bảo ảnh không bị méo khi co dãn */
+.bicycle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.bicycle-card-img {
+    height: 180px; /* Chiều cao ảnh */
+    object-fit: cover;
+}
+
+/* Định dạng huy hiệu trạng thái trên card */
+.bike-status-badge {
+    position: absolute;
+    top: 10px;
+    right: -35px; /* Đẩy ra ngoài */
+    padding: 5px 30px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: white;
+    background-color: var(--bs-secondary); /* Mặc định */
+    transform: rotate(45deg); /* Xoay 45 độ */
+    transform-origin: top left;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 1; /* Đảm bảo badge nổi lên trên */
+}
+/* Thêm màu cụ thể cho từng trạng thái */
+.bike-status-badge.bg-label-success { background-color: var(--bs-success) !important; color: #333 !important;}
+.bike-status-badge.bg-label-warning { background-color: var(--bs-warning) !important; color: #333 !important; }
+.bike-status-badge.bg-label-info    { background-color: var(--bs-info) !important; color: #333 !important;}
+.bike-status-badge.bg-label-danger  { background-color: var(--bs-danger) !important; color: #333 !important;}
+.bike-status-badge.bg-label-secondary { background-color: var(--bs-secondary) !important; color: #333 !important;}
+
+
+/* Nút action trong card */
+.bicycle-card .card-footer {
+    padding: 0.5rem 1rem; /* Giảm padding */
+    background-color: transparent;
+    border-top: none;
+}
+
+/* === CSS CHO EMPTY STATE === */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    opacity: 0.7;
+}
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #a1acb8;
+}
+.empty-state p {
+    font-size: 1.1rem;
+    color: #697a8d;
 }

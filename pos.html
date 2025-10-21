@@ -10,42 +10,72 @@
     <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/css/demo.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" />
 
-    <link rel="stylesheet" href="pos.css">
+    <link rel="stylesheet" href="css/pos.css">
 </head>
 <body>
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+         <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header"><i class='bx bx-bell me-2'></i><strong class="me-auto">Thông báo</strong><small>Vừa xong</small><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button></div>
+            <div class="toast-body"></div>
+        </div>
+    </div>
+
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo">
-                    <a href="../dashboard/dashboard.html" class="app-brand-link">
-                        <span class="app-brand-text demo menu-text fw-bolder">Quản lý Xe</span>
+                    <a href="dashboard.html" class="app-brand-link">
+                        <img src="img/logoxee.png" alt="Trang chủ" style="max-height: 190px;" />
                     </a>
                 </div>
                 <ul class="menu-inner py-1">
-                    <li class="menu-item">
-                        <a href="../dashboard/dashboard.html" class="menu-link"><i class="menu-icon tf-icons bx bx-home-circle"></i><div>Dashboard</div></a>
-                    </li>
-                     <li class="menu-item active">
+                    <li class="menu-item"><a href="dashboard.html" class="menu-link"><i class="menu-icon tf-icons bx bx-home-circle"></i><div>Dashboard</div></a></li>
+                    <li class="menu-item active"> 
                         <a href="pos.html" class="menu-link"><i class="menu-icon tf-icons bx bx-cart-alt"></i><div>Bán hàng (POS)</div></a>
                     </li>
-                    <li class="menu-item">
-                        <a href="../bicycle/bicycle.html" class="menu-link"><i class="menu-icon tf-icons bx bxs-bicycle"></i><div>Quản lý Xe đạp</div></a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="../customer/customer.html" class="menu-link"><i class="menu-icon tf-icons bx bx-user"></i><div>Quản lý Khách hàng</div></a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="../rental/rental.html" class="menu-link"><i class="menu-icon tf-icons bx bx-receipt"></i><div>Quản lý Đơn thuê</div></a>
-                    </li>
+                    <li class="menu-item"><a href="bicycle.html" class="menu-link"><i class="menu-icon tf-icons bx bx-list-ul"></i><div>Quản lý Xe đạp</div></a></li>
+                    <li class="menu-item"><a href="customer.html" class="menu-link"><i class="menu-icon tf-icons bx bx-user"></i><div>Quản lý Khách hàng</div></a></li>
+                    <li class="menu-item"><a href="promotion.html" class="menu-link"><i class="menu-icon tf-icons bx bxs-purchase-tag-alt"></i><div>Quản lý Khuyến mãi</div></a></li> 
                 </ul>
             </aside>
 
             <div class="layout-page">
-                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar"></nav>
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)"><i class="bx bx-menu bx-sm"></i></a>
+                    </div>
+                    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                        <div class="navbar-nav align-items-center">
+                            <div class="nav-item d-flex align-items-center">
+                                <i class="bx bx-search fs-4 lh-0"></i>
+                                <input type="text" class="form-control border-0 shadow-none" placeholder="Tìm kiếm..." aria-label="Tìm kiếm...">
+                            </div>
+                        </div>
+                        <ul class="navbar-nav flex-row align-items-center ms-auto">
+                            <li class="nav-item me-2">
+                                <a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);">
+                                    <i class='bx bx-sm'></i> 
+                                </a>
+                            </li>
+                             <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-2">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                    <i class="bx bx-bell bx-sm"></i>
+                                    <span class="badge bg-danger rounded-pill badge-notifications">3</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end py-0"> </ul>
+                            </li>
+                            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                    <div class="avatar avatar-online"><img src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"></div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end"> </ul>
+                            </li>
+                            </ul>
+                    </div>
+                </nav>
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <div class="row g-4">
-
                             <div class="col-lg-7">
                                 <div class="card h-100">
                                     <div class="card-header">
@@ -66,45 +96,49 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control" placeholder="Tìm SĐT hoặc Tên...">
                                                 <button class="btn btn-outline-primary" type="button" title="Tìm khách hàng"><i class='bx bx-search'></i></button>
-                                                <button class="btn btn-primary" type="button" title="Thêm khách hàng mới"><i class='bx bx-user-plus'></i></button>
+                                                <button class="btn btn-primary" type="button" title="Thêm khách hàng mới" data-bs-toggle="modal" data-bs-target="#addCustomerModal"><i class='bx bx-user-plus'></i></button>
                                             </div>
                                         </div>
-                                        
                                         <h6 class="text-muted border-top pt-3">CHI TIẾT ĐƠN THUÊ</h6>
-                                        <ul class="list-group" id="cart-items">
-                                            <li class="list-group-item text-center text-muted">Chưa có xe nào được chọn</li>
-                                        </ul>
-
+                                        <ul class="list-group" id="cart-items"><li class="list-group-item text-center text-muted">Chưa có xe nào được chọn</li></ul>
                                         <div class="border-top mt-3 pt-3">
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <span>Tạm tính</span>
-                                                <span id="subtotal">0 VND</span>
-                                            </div>
-                                            <div class="d-flex justify-content-between mb-2">
-                                                <span>Giảm giá</span>
-                                                <span id="discount" class="text-danger">- 0 VND</span>
-                                            </div>
+                                            <div class="d-flex justify-content-between mb-2"><span>Tạm tính</span><span id="subtotal">0 VND</span></div>
+                                            <div class="d-flex justify-content-between mb-2"><span>Giảm giá</span><span id="discount" class="text-danger">- 0 VND</span></div>
                                             <hr class="my-2">
-                                            <div class="d-flex justify-content-between fw-bold fs-5 mb-3">
-                                                <span>TỔNG CỘNG</span>
-                                                <span id="total">0 VND</span>
-                                            </div>
+                                            <div class="d-flex justify-content-between fw-bold fs-5 mb-3"><span>TỔNG CỘNG</span><span id="total">0 VND</span></div>
                                         </div>
-
                                         <div class="d-grid gap-2">
-                                            <button class="btn btn-primary btn-lg" type="button" id="checkout-btn">
-                                                <i class='bx bxs-dollar-circle fs-4 me-2'></i> TẠO ĐƠN THUÊ
-                                            </button>
+                                            <button class="btn btn-primary btn-lg" type="button" id="checkout-btn"><i class='bx bxs-dollar-circle fs-4 me-2'></i> TẠO ĐƠN THUÊ</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                    <footer class="content-footer footer bg-footer-theme">
+                        <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                            <div class="mb-2 mb-md-0">© <script>document.write(new Date().getFullYear());</script>, làm với ❤️ bởi <a href="#" target="_blank" class="footer-link fw-bolder">Bạn</a></div>
+                            <div><a href="#" class="footer-link me-4" target="_blank">Tài liệu</a><a href="#" target="_blank" class="footer-link me-4">Hỗ trợ</a></div>
+                        </div>
+                    </footer>
+                    <div class="content-backdrop fade"></div>
+                </div> </div> </div> </div> <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addCustomerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title" id="addCustomerModalLabel">Thêm khách hàng mới</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <form id="add-customer-form">
+                    <div class="modal-body">
+                        <div class="mb-3"><label for="customer-name" class="form-label">Tên khách hàng</label><input type="text" class="form-control" id="customer-name" required></div>
+                        <div class="mb-3"><label for="customer-phone" class="form-label">Số điện thoại</label><input type="tel" class="form-control" id="customer-phone" required></div>
+                        <div class="mb-3"><label for="customer-email" class="form-label">Email (Không bắt buộc)</label><input type="email" class="form-control" id="customer-email"></div>
+                    </div>
+                    <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button><button type="submit" class="btn btn-primary">Lưu khách hàng</button></div>
+                </form>
             </div>
         </div>
     </div>
+
 
     <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/libs/jquery/jquery.js"></script>
     <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/libs/popper/popper.js"></script>

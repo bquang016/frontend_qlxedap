@@ -1,0 +1,34 @@
+/* Định dạng thông báo khi áp dụng mã giảm giá thành công */
+.coupon-success {
+    color: var(--bs-success);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Định dạng thông báo khi áp dụng mã giảm giá thất bại */
+.coupon-error {
+    color: var(--bs-danger);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* === CSS MỚI CHO MODAL QR === */
+
+/* Định dạng ảnh QR */
+.qr-code-image {
+    width: 250px;       /* Kích thước cố định */
+    height: 250px;
+    display: block;     /* Căn giữa ảnh */
+    margin: 0 auto;
+}
+
+/* Căn giữa thông tin ngân hàng */
+.bank-details {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.bank-details p {
+    margin-bottom: 5px; /* Giảm khoảng cách giữa các dòng */
+    font-size: 0.95rem;
+}

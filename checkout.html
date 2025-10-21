@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi" class="light-style layout-menu-fixed">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thanh toán Đơn hàng</title>
+
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/css/theme-default.css" />
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/css/demo.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" />
+
+    <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <div class="app-brand demo">
+                    <a href="../dashboard/dashboard.html" class="app-brand-link">
+                        <span class="app-brand-text demo menu-text fw-bolder">Quản lý Xe</span>
+                    </a>
+                </div>
+                <ul class="menu-inner py-1">
+                    <li class="menu-item">
+                        <a href="../dashboard/dashboard.html" class="menu-link"><i class="menu-icon tf-icons bx bx-home-circle"></i><div>Dashboard</div></a>
+                    </li>
+                     <li class="menu-item active">
+                        <a href="pos.html" class="menu-link"><i class="menu-icon tf-icons bx bx-cart-alt"></i><div>Bán hàng (POS)</div></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="../bicycle/bicycle.html" class="menu-link"><i class="menu-icon tf-icons bx bxs-bicycle"></i><div>Quản lý Xe đạp</div></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="../customer/customer.html" class="menu-link"><i class="menu-icon tf-icons bx bx-user"></i><div>Quản lý Khách hàng</div></a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="../rental/rental.html" class="menu-link"><i class="menu-icon tf-icons bx bx-receipt"></i><div>Quản lý Đơn thuê</div></a>
+                    </li>
+                </ul>
+            </aside>
+
+            <div class="layout-page">
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar"></nav>
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">POS /</span> Xác nhận Thanh toán</h4>
+                        
+                        <div class="row g-4">
+                            <div class="col-lg-8">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Chi tiết Đơn hàng</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="customer-info" class="mb-4">...</div>
+                                        <h6>Chi tiết xe thuê:</h6>
+                                        <ul class="list-group" id="order-items-list">
+                                            </ul>
+                                        <h6 class="mt-4">Phương thức thanh toán:</h6>
+                                        <div class="form-check">
+                                            <input name="paymentMethod" class="form-check-input" type="radio" value="cash" id="paymentCash" checked>
+                                            <label class="form-check-label" for="paymentCash">Tiền mặt (Cash)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input name="paymentMethod" class="form-check-input" type="radio" value="transfer" id="paymentTransfer">
+                                            <label class="form-check-label" for="paymentTransfer">Chuyển khoản (QR)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="card">
+                                    <div class="card-header"><h5 class="card-title mb-0">Tóm tắt Hóa đơn</h5></div>
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between mb-2"><span class="text-muted">Tạm tính:</span><span id="subtotal">0 VND</span></div>
+                                        <div class="mb-3">
+                                            <label for="coupon-code" class="form-label">Mã giảm giá</label>
+                                            <div class="input-group">
+                                                <input type="text" id="coupon-code" class="form-control" placeholder="VD: GIAMGIA10">
+                                                <button class="btn btn-outline-primary" type="button" id="apply-coupon-btn">Áp dụng</button>
+                                            </div>
+                                            <div id="coupon-message" class="mt-2"></div>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2"><span class="text-muted">Giảm giá:</span><span id="discount-amount" class="text-danger">- 0 VND</span></div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between fw-bold fs-5 mb-3"><span>Tổng cộng:</span><span id="final-total">0 VND</span></div>
+                                        
+                                        <div class="d-grid gap-2">
+                                            <button class="btn btn-primary btn-lg" type="button" id="confirm-payment-btn">
+                                                <i class="bx bx-check-circle me-1"></i>
+                                                Xác nhận Thanh toán
+                                            </button>
+                                            <button class="btn btn-outline-secondary" type="button" id="back-btn">
+                                                <i class="bx bx-left-arrow-alt me-1"></i>
+                                                Quay lại
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="qrCodeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="qrCodeModalLabel">Quét mã QR để thanh toán</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=NguyenVanAn-0123456789-VIETQR" 
+                         alt="Mã QR Thanh toán" class="qr-code-image">
+                    <div class="bank-details">
+                        <p><strong>Ngân hàng:</strong> Techcombank</p>
+                        <p><strong>Số tài khoản:</strong> 1903 XXXX XXXX</p>
+                        <p><strong>Chủ tài khoản:</strong> NGUYEN VAN AN</p>
+                        <p class="fw-semibold">Nội dung: TT [Mã đơn hàng]</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đã thanh toán</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/libs/popper/popper.js"></script>
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/js/bootstrap.js"></script>
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/js/main.js"></script>
+    
+    <script src="js/checkout.js"></script>
+</body>
+</html>

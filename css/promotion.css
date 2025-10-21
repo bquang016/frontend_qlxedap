@@ -1,0 +1,49 @@
+/* Thêm biểu tượng con trỏ cho các cột có thể sắp xếp (nếu bạn muốn làm) */
+thead th.sortable {
+    cursor: pointer;
+}
+thead th.sortable:hover {
+    background-color: #f5f5f9;
+}
+
+/* Đảm bảo các nút hành động nằm gọn gàng */
+.table-actions {
+    display: flex;
+    gap: 5px; /* Khoảng cách giữa các nút */
+}
+
+/* === THÊM HIỆU ỨNG HOVER CHO DÒNG === */
+.table-hover tbody tr:hover {
+    background-color: rgba(105, 108, 255, 0.05); /* Màu primary rất nhạt */
+}
+
+/* === CSS CHO EMPTY STATE === */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    opacity: 0.7;
+}
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #a1acb8;
+}
+.empty-state p {
+    font-size: 1.1rem;
+    color: #697a8d;
+}
+
+/* CSS MỚI CHO ICON SẮP XẾP */
+th .sort-icon::before,
+th .sort-icon::after {
+    font-family: 'boxicons' !important;
+    font-size: 0.8em;
+    position: relative;
+    opacity: 0.3;
+    transition: opacity 0.2s ease;
+    margin-left: 5px;
+}
+th .sort-icon::before { content: "\eb35"; top: -0.2em; } /* Mũi tên lên */
+th .sort-icon::after { content: "\ea51"; bottom: -0.2em; } /* Mũi tên xuống */
+th.sort-asc .sort-icon::before { opacity: 1; color: var(--bs-primary); } /* Active lên */
+th.sort-desc .sort-icon::after { opacity: 1; color: var(--bs-primary); } /* Active xuống */

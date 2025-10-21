@@ -15,18 +15,23 @@ $(document).ready(function () {
     ];
     let cart = []; // Mảng chứa các xe đã được chọn
 
-    // Lựa chọn các element cần dùng
+    // Lựa chọn các element
     const $bikeListContainer = $('#bike-list-container .row');
     const $cartItemsContainer = $('#cart-items');
     const $subtotal = $('#subtotal');
     const $total = $('#total');
+    const $addCustomerForm = $('#add-customer-form');
+    const $addCustomerModal = $('#addCustomerModal');
+    // Lựa chọn các element mới nếu cần tương tác (ví dụ: nút Sáng/Tối)
+    const $styleSwitcherToggle = $('.style-switcher-toggle i');
+    const $html = $('html');
 
     /**
      * ==================================
      * CÁC HÀM XỬ LÝ
      * ==================================
      */
-    
+
     // Hàm định dạng số sang tiền tệ VND
     function formatCurrency(number) {
         return number.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
@@ -40,7 +45,6 @@ $(document).ready(function () {
             return;
         }
         $.each(bikesToRender, function(i, bike){
-            // Kiểm tra xem xe đã có trong giỏ hàng chưa
             const isInCart = cart.some(item => item.id === bike.id);
             const isDisabled = bike.status !== 'available' || isInCart;
             const bikeCardHTML = `
@@ -85,24 +89,32 @@ $(document).ready(function () {
         $total.text(formatCurrency(subtotal)); // Tạm thời chưa có giảm giá
     }
 
+    // Hàm tìm kiếm và render lại
+    function filterAndRenderBikes() {
+        const searchTerm = $('#bike-search').val().toLowerCase();
+        const filteredBikes = availableBikes.filter(bike =>
+            bike.name.toLowerCase().includes(searchTerm) ||
+            bike.type.toLowerCase().includes(searchTerm)
+        );
+        renderBikes(filteredBikes);
+    }
+
     /**
      * ==================================
      * GẮN CÁC SỰ KIỆN
      * ==================================
      */
-     
+
     // Sự kiện click chọn xe để thêm vào giỏ hàng
     $bikeListContainer.on('click', '.bike-card:not(.disabled)', function() {
         const bikeId = $(this).data('id');
         const selectedBike = availableBikes.find(b => b.id === bikeId);
-        
         if (selectedBike) {
             cart.push(selectedBike);
             renderCart();
             // Cập nhật lại danh sách xe để vô hiệu hóa xe vừa chọn
-            const searchTerm = $('#bike-search').val().toLowerCase();
-            const filteredBikes = availableBikes.filter(bike => bike.name.toLowerCase().includes(searchTerm) || bike.type.toLowerCase().includes(searchTerm));
-            renderBikes(filteredBikes);
+            // (Không cần gọi filterAndRenderBikes nếu renderBikes đã xử lý class disabled dựa trên cart)
+             $(this).addClass('disabled'); // Chỉ cần disable thẻ vừa click
         }
     });
 
@@ -111,22 +123,69 @@ $(document).ready(function () {
         const bikeId = $(this).data('id');
         cart = cart.filter(item => item.id !== bikeId);
         renderCart();
-        // Cập nhật lại danh sách xe để kích hoạt lại xe vừa xóa
-        const searchTerm = $('#bike-search').val().toLowerCase();
-        const filteredBikes = availableBikes.filter(bike => bike.name.toLowerCase().includes(searchTerm) || bike.type.toLowerCase().includes(searchTerm));
-        renderBikes(filteredBikes);
+        // Kích hoạt lại thẻ xe trong danh sách
+        $bikeListContainer.find(`.bike-card[data-id="${bikeId}"]`).removeClass('disabled');
     });
 
     // Sự kiện tìm kiếm xe
-    $('#bike-search').on('input', function() {
-        const searchTerm = $(this).val().toLowerCase();
-        const filteredBikes = availableBikes.filter(bike => 
-            bike.name.toLowerCase().includes(searchTerm) || 
-            bike.type.toLowerCase().includes(searchTerm)
-        );
-        renderBikes(filteredBikes);
+    $('#bike-search').on('input', filterAndRenderBikes);
+
+    // === LOGIC XỬ LÝ MODAL THÊM KHÁCH HÀNG ===
+    $addCustomerForm.on('submit', function(e) {
+        e.preventDefault(); // Ngăn form gửi đi và tải lại trang
+
+        // Lấy dữ liệu từ form
+        const newCustomer = {
+            name: $('#customer-name').val(),
+            phone: $('#customer-phone').val(),
+            email: $('#customer-email').val()
+        };
+
+        // Giả lập việc lưu thành công (Trong thực tế sẽ gọi API)
+        console.log('Đã lưu khách hàng mới:', newCustomer);
+        alert('Thêm khách hàng ' + newCustomer.name + ' thành công!');
+
+        // Đóng modal
+        $addCustomerModal.modal('hide');
+        $addCustomerForm[0].reset();
+
+        // Cập nhật ô tìm kiếm khách hàng với SĐT vừa nhập (tùy chọn)
+        $('.input-group .form-control[placeholder*="SĐT"]').val(newCustomer.phone);
     });
-    
+
+    // === NÚT TẠO ĐƠN THUÊ (Chuyển trang) ===
+    $('#checkout-btn').on('click', function() {
+        // Lưu giỏ hàng vào localStorage trước khi chuyển trang
+        // Kiểm tra xem giỏ hàng có trống không
+         if (cart.length === 0) {
+            alert('Vui lòng chọn ít nhất một xe để tạo đơn thuê.');
+            return; // Ngăn chuyển trang nếu giỏ hàng trống
+        }
+        localStorage.setItem('posCart', JSON.stringify(cart));
+        // Lưu thông tin khách hàng (nếu có)
+        // localStorage.setItem('posCustomer', JSON.stringify(currentCustomer));
+        window.location.href = 'checkout.html'; // Chuyển đến trang thanh toán
+    });
+
+     // === XỬ LÝ NÚT SÁNG/TỐI (Tương tự promotion.js) ===
+    // Đặt icon ban đầu
+    if ($html.hasClass('dark-style')) { $styleSwitcherToggle.addClass('bx bx-sun'); }
+    else { $styleSwitcherToggle.addClass('bx bx-moon'); }
+
+    $('.style-switcher-toggle').parent().on('click', function(e) { // Gắn vào thẻ cha <a>
+        e.preventDefault();
+       if ($html.hasClass('dark-style')) {
+           $html.removeClass('dark-style').addClass('light-style');
+           $styleSwitcherToggle.removeClass('bx-sun').addClass('bx-moon');
+           // localStorage.setItem('theme', 'light');
+       } else {
+           $html.removeClass('light-style').addClass('dark-style');
+           $styleSwitcherToggle.removeClass('bx-moon').addClass('bx-sun');
+           // localStorage.setItem('theme', 'dark');
+       }
+    });
+    // ============================================
+
     // --- KHỞI TẠO ---
     renderBikes(availableBikes); // Render toàn bộ xe lần đầu
-}); 
+});
