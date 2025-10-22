@@ -6,7 +6,7 @@ $(document).ready(function () {
      */
      // Dữ liệu mẫu ban đầu (Backend sẽ cung cấp)
     let currentBicycles = [
-        { id: 1, name: 'Vitus Substance 2', type: 'Xe địa hình', price: 60000, img: 'https://images.immediate.co.uk/production/volatile/sites/21/2023/02/Vitus-Substance-2-GRX-RX600-01-3c58257.jpg?quality=90&resize=768,574', status: 'available' },
+        { id: 1, name: 'Xe dap', type: 'Xe địa hình', price: 60000, img: 'https://xedapgiakho.com/wp-content/uploads/2024/06/ngoai-hinh-xe-dap-pho-thong-action-24-inch.jpg', status: 'available' },
         { id: 2, name: 'Giant Contend 3', type: 'Xe đua', price: 75000, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQL-P_H-p-1mOa-UjY-4V2V3kF-rT_bX_xZA&s', status: 'rented' },
         { id: 3, name: 'Specialized Diverge', type: 'Xe địa hình', price: 65000, img: 'https://images.immediate.co.uk/production/volatile/sites/21/2021/03/Specialized-Diverge-Comp-Carbon-2021-01-e236614.jpg?quality=90&resize=768,574', status: 'available' },
         { id: 4, name: 'Trek Domane AL 2', type: 'Xe thành phố', price: 50000, img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_x-q_jR7a5Xz-v9z7Y5t6wz_G9rY_xO_k_A&s', status: 'maintenance' },

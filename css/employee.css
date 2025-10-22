@@ -1,0 +1,44 @@
+/*
+  Định dạng ô chứa thông tin nhân viên (avatar + tên/chức vụ)
+*/
+.employee-info-cell {
+    display: flex;
+    align-items: center;
+}
+
+.employee-details {
+    margin-left: 12px;
+}
+
+.employee-name {
+    font-weight: 600;
+    color: var(--bs-body-color);
+    display: block;
+    margin-bottom: 0.1rem;
+}
+
+.employee-position { /* Thay phone bằng position */
+    font-size: 0.875rem;
+    color: var(--bs-secondary-color);
+}
+
+/* Hiệu ứng hover cho dòng bảng */
+.table-hover tbody tr:hover {
+    background-color: rgba(105, 108, 255, 0.05);
+}
+
+/* Nút action */
+.table-actions {
+    display: flex;
+    gap: 5px;
+}
+
+/* CSS CHO EMPTY STATE */
+.empty-state { /* ... (Giống promotion.css) ... */ }
+
+/* CSS cho icon sắp xếp */
+thead th.sortable { cursor: pointer; }
+thead th.sortable:hover { background-color: #f5f5f9; }
+th .sort-icon::before, th .sort-icon::after { /* ... (Giống promotion.css) ... */ }
+th.sort-asc .sort-icon::before { opacity: 1; color: var(--bs-primary); }
+th.sort-desc .sort-icon::after { opacity: 1; color: var(--bs-primary); }

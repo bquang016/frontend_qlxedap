@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi" class="light-style layout-menu-fixed">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý Bảo trì</title>
+
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/css/theme-default.css" />
+    <link rel="stylesheet" href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/css/demo.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" />
+
+    <link rel="stylesheet" href="css/maintenance.css">
+</head>
+<body>
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header"><i class='bx bx-bell me-2'></i><strong class="me-auto">Thông báo</strong><small>Vừa xong</small><button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button></div>
+            <div class="toast-body"></div>
+        </div>
+    </div>
+
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <div class="app-brand demo">
+                    <a href="dashboard.html" class="app-brand-link">
+                        <img src="img/logoxee.png" alt="Trang chủ" style="max-height: 190px;" />
+                    </a>
+                </div>
+                <ul class="menu-inner py-1">
+                    <li class="menu-item"><a href="dashboard.html" class="menu-link"><i class="menu-icon tf-icons bx bx-home-circle"></i><div>Dashboard</div></a></li>
+                    <li class="menu-item"><a href="pos.html" class="menu-link"><i class="menu-icon tf-icons bx bx-cart-alt"></i><div>Bán hàng (POS)</div></a></li>
+                    <li class="menu-item"><a href="bicycle.html" class="menu-link"><i class="menu-icon tf-icons bx bx-list-ul"></i><div>Quản lý Xe đạp</div></a></li>
+                    <li class="menu-item"><a href="customer.html" class="menu-link"><i class="menu-icon tf-icons bx bx-user"></i><div>Quản lý Khách hàng</div></a></li>
+                    <li class="menu-item"><a href="rental.html" class="menu-link"><i class="menu-icon tf-icons bx bx-receipt"></i><div>Quản lý Đơn thuê</div></a></li>
+                    <li class="menu-item"><a href="promotion.html" class="menu-link"><i class="menu-icon tf-icons bx bxs-purchase-tag-alt"></i><div>Quản lý Khuyến mãi</div></a></li>
+                     <li class="menu-item"><a href="payment.html" class="menu-link"><i class="menu-icon tf-icons bx bx-credit-card"></i><div>Quản lý Thanh toán</div></a></li>
+                     <li class="menu-item active">
+                        <a href="maintenance.html" class="menu-link"><i class="menu-icon tf-icons bx bxs-wrench"></i><div>Quản lý Bảo trì</div></a>
+                    </li>
+                </ul>
+            </aside>
+
+            <div class="layout-page">
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+                     <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none"><a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)"><i class="bx bx-menu bx-sm"></i></a></div>
+                    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                        <div class="navbar-nav align-items-center"><div class="nav-item d-flex align-items-center"><i class="bx bx-search fs-4 lh-0"></i><input type="text" class="form-control border-0 shadow-none" placeholder="Tìm kiếm..." aria-label="Tìm kiếm..."></div></div>
+                        <ul class="navbar-nav flex-row align-items-center ms-auto">
+                             <li class="nav-item me-2"><a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);"><i class='bx bx-sm'></i></a></li>
+                             <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-2"> </li>
+                             <li class="nav-item navbar-dropdown dropdown-user dropdown"> </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Quản lý /</span> Bảo trì</h4>
+
+                        <div class="card">
+                            <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-3">
+                                <h5 class="mb-0">Lịch sử Bảo trì</h5>
+                                <div class="d-flex flex-wrap gap-3 align-items-center">
+                                     <div class="w-auto">
+                                         <input type="date" id="filter-maintenance-date" class="form-control form-control-sm">
+                                    </div>
+                                    <div class="input-group input-group-sm w-auto">
+                                        <span class="input-group-text"><i class='bx bx-search'></i></span>
+                                        <input type="text" id="search-maintenance" class="form-control" placeholder="Tìm theo Mã xe...">
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-sm" id="add-maintenance-btn"><i class='bx bx-plus'></i> &nbsp; Thêm Lịch Bảo trì</button>
+                                </div>
+                            </div>
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Mã xe</th>
+                                            <th class="sortable" data-column="maintenanceDate">Ngày Bảo trì <span class="sort-icon"></span></th>
+                                            <th>Mô tả</th>
+                                            <th class="sortable" data-column="cost">Chi phí <span class="sort-icon"></span></th>
+                                            <th>Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="maintenance-table-body" class="table-border-bottom-0">
+                                        <tr><td colspan="6"><div class="text-center p-3"><div class="spinner-border text-primary spinner-border-sm"></div><span class="ms-2">Đang tải...</span></div></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <nav class="mt-4"><ul id="pagination" class="pagination justify-content-center"></ul></nav>
+                    </div>
+
+                    <footer class="content-footer footer bg-footer-theme"> </footer>
+                    <div class="content-backdrop fade"></div>
+                </div> </div> </div> </div> <div class="modal fade" id="maintenanceModal" tabindex="-1" aria-labelledby="maintenanceModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title" id="maintenanceModalLabel">Thêm Lịch Bảo trì</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <form id="maintenance-form">
+                    <div class="modal-body">
+                        <input type="hidden" id="maintenance-id">
+                        <div class="mb-3">
+                            <label for="maintenance-bike-id" class="form-label">Mã xe đạp</label>
+                            <input type="text" class="form-control" id="maintenance-bike-id" placeholder="VD: XE001" required>
+                        </div>
+                         <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="maintenance-date-modal" class="form-label">Ngày Bảo trì</label>
+                                <input type="date" class="form-control" id="maintenance-date-modal" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="maintenance-cost-modal" class="form-label">Chi phí (VND)</label>
+                                <input type="number" class="form-control" id="maintenance-cost-modal" min="0" value="0" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="maintenance-description-modal" class="form-label">Mô tả công việc</label>
+                            <textarea class="form-control" id="maintenance-description-modal" rows="3" placeholder="VD: Thay lốp, tra dầu xích..."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button><button type="submit" class="btn btn-primary">Lưu</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header"><h5 class="modal-title" id="deleteConfirmModalLabel">Xác nhận Xóa</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <div class="modal-body">Bạn có chắc chắn muốn xóa lịch bảo trì <strong id="promo-name-to-delete"></strong> này? Hành động này không thể hoàn tác.<input type="hidden" id="promo-id-to-delete"></div>
+                <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button><button type="button" class="btn btn-danger" id="confirm-delete-btn">Xóa</button></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/libs/popper/popper.js"></script>
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/vendor/js/bootstrap.js"></script>
+    <script src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/js/main.js"></script>
+
+    <script src="js/maintenance.js"></script>
+</body>
+</html>

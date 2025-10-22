@@ -1,0 +1,22 @@
+/* === CSS CHO EMPTY STATE === */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    opacity: 0.7;
+}
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #a1acb8;
+}
+.empty-state p {
+    font-size: 1.1rem;
+    color: #697a8d;
+}
+
+/* Tùy chỉnh nhỏ (nếu cần) */
+/* Ví dụ: làm cho label bộ lọc nhỏ hơn một chút */
+.card-body .form-label {
+    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
+}

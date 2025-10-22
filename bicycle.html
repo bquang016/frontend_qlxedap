@@ -47,12 +47,22 @@
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                              <li class="nav-item me-2"><a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);"><i class='bx bx-sm'></i></a></li>
                              <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-2">
-                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="bx bx-bell bx-sm"></i><span class="badge bg-danger rounded-pill badge-notifications">3</span></a>
-                                <ul class="dropdown-menu dropdown-menu-end py-0"> </ul>
+                                <ul class="dropdown-menu dropdown-menu-end py-0">
+                                     <li class="dropdown-menu-header border-bottom"><div class="dropdown-header d-flex align-items-center py-3"><h5 class="text-body mb-0 me-auto">Thông báo</h5><a href="javascript:void(0)" class="dropdown-notifications-all text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Đánh dấu đã đọc"><i class="bx fs-4 bx-envelope-open"></i></a></div></li>
+                                     <li class="dropdown-notifications-list scrollable-container"><ul class="list-group list-group-flush"><li class="list-group-item list-group-item-action dropdown-notifications-item">Nội dung thông báo mẫu...</li></ul></li>
+                                     <li class="dropdown-menu-footer border-top"><a href="javascript:void(0);" class="dropdown-item d-flex justify-content-center p-3">Xem tất cả</a></li>
+                                </ul>
                              </li>
                              <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"><div class="avatar avatar-online"><img src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"></div></a>
-                                <ul class="dropdown-menu dropdown-menu-end"> </ul>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                     <li><a class="dropdown-item" href="#"><div class="d-flex"><div class="flex-shrink-0 me-3"><div class="avatar avatar-online"><img src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template-free/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle"></div></div><div class="flex-grow-1"><span class="fw-semibold d-block">Admin</span><small class="text-muted">Quản trị viên</small></div></div></a></li>
+                                     <li><div class="dropdown-divider"></div></li>
+                                     <li><a class="dropdown-item" href="#"><i class="bx bx-user me-2"></i><span class="align-middle">Hồ sơ</span></a></li>
+                                     <li><a class="dropdown-item" href="#"><i class="bx bx-cog me-2"></i><span class="align-middle">Cài đặt</span></a></li>
+                                     <li><div class="dropdown-divider"></div></li>
+                                     <li><a class="dropdown-item" href="#"><i class="bx bx-power-off me-2"></i><span class="align-middle">Đăng xuất</span></a></li>
+                                </ul>
                              </li>
                         </ul>
                     </div>
@@ -99,7 +109,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header"><h5 class="modal-title" id="bicycleModalLabel">Thêm Xe đạp</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                <form id="bicycle-form">
+                <form id="bicycle-form" enctype="multipart/form-data">
                     <div class="modal-body">
                         <input type="hidden" id="bicycle-id">
                         <div class="mb-3"><label for="bike-name" class="form-label">Tên xe</label><input type="text" class="form-control" id="bike-name" required></div>
@@ -107,7 +117,19 @@
                              <div class="col-md-6 mb-3"><label for="bike-type" class="form-label">Loại xe</label><input type="text" class="form-control" id="bike-type" placeholder="VD: Xe địa hình" required></div>
                              <div class="col-md-6 mb-3"><label for="bike-price" class="form-label">Giá thuê/giờ (VND)</label><input type="number" class="form-control" id="bike-price" required min="0"></div>
                         </div>
-                        <div class="mb-3"><label for="bike-image" class="form-label">URL Hình ảnh</label><input type="url" class="form-control" id="bike-image" placeholder="https://example.com/image.jpg"></div>
+
+                        <div class="mb-3">
+                            <label for="bike-image-upload" class="form-label">Hình ảnh xe đạp</label>
+                            <input class="form-control" type="file" id="bike-image-upload" accept="image/*">
+                            <div class="mt-2 text-center" id="image-preview-container" style="display: none;">
+                                <img id="image-preview" src="#" alt="Xem trước ảnh" class="img-thumbnail" style="max-height: 150px; max-width: 100%;" />
+                                <p class="text-muted small mt-1">Ảnh xem trước</p>
+                            </div>
+                            <div class="mt-2" id="current-image-container" style="display: none;">
+                                <p class="mb-1 small text-muted">Ảnh hiện tại:</p>
+                                <img id="current-image" src="#" alt="Ảnh hiện tại" class="img-thumbnail" style="max-height: 100px;" />
+                            </div>
+                        </div>
                         <div class="mb-3"><label for="bike-status-modal" class="form-label">Trạng thái</label>
                             <select id="bike-status-modal" class="form-select">
                                 <option value="available">Đang có sẵn</option>

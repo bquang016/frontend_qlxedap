@@ -1,0 +1,46 @@
+/* Style icon sắp xếp */
+thead th.sortable { cursor: pointer; }
+thead th.sortable:hover { background-color: #f5f5f9; }
+th .sort-icon::before,
+th .sort-icon::after {
+    font-family: 'boxicons' !important; font-size: 0.8em; position: relative;
+    opacity: 0.3; transition: opacity 0.2s ease; margin-left: 5px;
+}
+th .sort-icon::before { content: "\eb35"; top: -0.2em; }
+th .sort-icon::after { content: "\ea51"; bottom: -0.2em; }
+th.sort-asc .sort-icon::before { opacity: 1; color: var(--bs-primary); }
+th.sort-desc .sort-icon::after { opacity: 1; color: var(--bs-primary); }
+
+/* Hiệu ứng hover cho dòng bảng */
+.table-hover tbody tr:hover {
+    background-color: rgba(105, 108, 255, 0.05);
+}
+
+/* Nút action */
+.table-actions {
+    display: flex;
+    gap: 5px;
+}
+
+/* CSS CHO EMPTY STATE */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    opacity: 0.7;
+}
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #a1acb8;
+}
+.empty-state p {
+    font-size: 1.1rem;
+    color: #697a8d;
+}
+
+/* Icon phương thức thanh toán (tùy chọn) */
+.payment-method-icon {
+    font-size: 1.2rem;
+    margin-right: 5px;
+    vertical-align: middle;
+}
